@@ -1,0 +1,6 @@
+@LaunchWebApiMapperly_HostAddress = http://localhost:5256
+
+GET {{LaunchWebApiMapperly_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
