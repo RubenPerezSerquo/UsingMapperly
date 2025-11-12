@@ -22,6 +22,8 @@ namespace LaunchWebApiMapperly.Controllers
 
             List<WeatherForecastEuropean> lista2 = mapper.ToEuropean(weatherForecastest.ToList());
 
+            // Cambio 01
+
             return lista2;
         }
 
