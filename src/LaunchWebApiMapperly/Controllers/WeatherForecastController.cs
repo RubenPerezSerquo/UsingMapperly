@@ -1,3 +1,4 @@
+using LaunchWebApiMapperly.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LaunchWebApiMapperly.Controllers
@@ -6,11 +7,6 @@ namespace LaunchWebApiMapperly.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<WeatherForecastController> _logger;
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
@@ -19,15 +15,15 @@ namespace LaunchWebApiMapperly.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<WeatherForecastEuropean> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            var weatherForecastest = ForecastService.GetWeateher();
+            var mapper = new Mapping.WeatherForecastMapper();
+
+            List<WeatherForecastEuropean> lista2 = mapper.ToEuropean(weatherForecastest.ToList());
+
+            return lista2;
         }
+
     }
 }
