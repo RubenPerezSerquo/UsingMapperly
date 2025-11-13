@@ -2,10 +2,15 @@
 {
     public class WeatherForecastEuropean
     {
-        public DateOnly Date { get; set; }
+        public DateOnly Date { get; }
+        public int TemperatureC { get; }
+        public string? Summary { get; }
 
-        public int TemperatureC { get; set; }
-
-        public string? Summary { get; set; }
+        public WeatherForecastEuropean(DateOnly date, int temperatureC, string? summary)
+        {
+            Date = date;
+            TemperatureC = temperatureC;
+            Summary = summary;
+        }
     }
 }
